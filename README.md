@@ -1,11 +1,12 @@
 # Twitter Stalker
 [![](https://img.shields.io/badge/heroku-deployed-green)](https://twitterstalker.herokuapp.com/)
 
+<img src = "twitter_stalker/assets/logo_wide.png">
+
 Clone the repo:
 ```
 git clone https://github.com/insaiyancvk/TwitterStalker/
 ```
-
 
 Navigate into the folder
 ```
