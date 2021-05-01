@@ -108,9 +108,6 @@ def plot_wtd_frequency(df, text_col, num_col, regex, search_type):
                         subplot_titles=['Weighted Frequency',
                                         'Absolute Frequency'],
                                         )
-    
-    # fig.for_each_yaxis(lambda axis: axis.title.update(font=dict(color = 'white', size=20)))
-    # fig.update_annotations(bgcolor='white')
 
     fig.append_trace(go.Bar(x=wtd_freq_df['wtd_freq'][::-1],
                             y=wtd_freq_df['word'][::-1],
@@ -128,9 +125,7 @@ def plot_wtd_frequency(df, text_col, num_col, regex, search_type):
                          showlegend=False,
                          yaxis={'title': 'Top Words: ' +
                                 text_col.replace('_', ' ').title(),
-                                # 'color':'#ffffff',
                                 },
-                        #   xaxis={'color':'#ffffff'}
                           )
     fig['layout']['annotations'] += ({'x': 0.5, 'y': -0.16,
                                       'xref': 'paper', 'showarrow': False,
@@ -156,9 +151,6 @@ def plot_user_analysis_chart(df, search_type):
     df = pd.DataFrame(df).drop_duplicates('user_screen_name')
     fig = make_subplots(rows=2, cols=4,
                         subplot_titles=subplot_titles)
-                        
-    # fig.update_annotations(bgcolor='white')
-    # fig.for_each_xaxis(lambda axis: axis.title.update(font=dict(color = 'white', size=20)))
 
     for i, col in enumerate(subplot_titles[:4], start=1):
         col = ('user_' + col).replace(' ', '_').lower()
