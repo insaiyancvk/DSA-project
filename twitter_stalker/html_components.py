@@ -6,7 +6,7 @@ import dash_bootstrap_components as dbc
 from .constants import img_base64
 from .constants import twitter_lang_metadata_filename
 import pandas as pd
-
+import plotly.graph_objects as go
 from dash_table import DataTable
 
 
@@ -41,11 +41,13 @@ Layout = html.Div([
         dbc.Col(lg=2, xs=10),
         dbc.Col([
            dcc.Dropdown(id='search_type',
-                        placeholder='Search Type',
+                        # placeholder='Search Type',
                         options=[{'label': c, 'value': c}
                                  for c in ['Search Tweets',
                                            'Search Users',
-                                           'Get User Timeline']])
+                                           'Get User Timeline']],
+                        value="Search Tweets",
+                        style={'color':'black'})
         ], lg=2, xs=10),
         dbc.Col([
             dbc.Input(id='twitter_search',
@@ -53,14 +55,15 @@ Layout = html.Div([
         ], lg=2, xs=10),
         dbc.Col([
             dbc.Input(id='twitter_search_count',
-                      placeholder='Number of results', type='number'),
+                      placeholder='Number of results', type='number',
+                        style={'color':'black'}),
 
         ], lg=2, xs=10),
         dbc.Col([
             dcc.Dropdown(
                 id='twitter_search_lang', placeholder='Language',
                          options=lang_options,
-                         style={'position': 'relative', 'zIndex': 15}
+                         style={'position': 'relative', 'zIndex': 15, 'color':'black'},
                          ),
         ], lg=2, xs=10),
         dbc.Col([
@@ -79,12 +82,15 @@ Layout = html.Div([
                         dcc.Dropdown(id='text_columns',
                                      placeholder='Text Column',
                                      value='tweet_full_text'),
-                    ], lg=3, xs=9),
+                    ], lg=3, xs=9,
+                        style={'color':'black'}),
                     dbc.Col([
                         dbc.Label('Weighted by:',color='primary'),
                         dcc.Dropdown(id='numeric_columns',
                                      placeholder='Numeric Column',
-                                     value='user_followers_count'),
+                        style={'color':'black'}
+                                    #  value='tweet_retweet_count'
+                                     ),
                     ], lg=3, xs=9),
                     dbc.Col([
                         dbc.Label('Elements to count:',color='primary'),
@@ -95,7 +101,8 @@ Layout = html.Div([
                                                         '2-word Phrases',
                                                         '3-word Phrases']],
                                      value='Words'),
-                    ], lg=3, xs=9),
+                    ], lg=3, xs=9,
+                        style={'color':'black'}),
                 ]),
                 html.Br(),
                 html.H2(id='wtd_freq_chart_title',
@@ -105,11 +112,9 @@ Layout = html.Div([
                 dcc.Loading([
                     dcc.Graph(id='wtd_freq_chart',
                               config={'displayModeBar': False},
-                              figure={'layout': {
-                                  'plot_bgcolor': '#0e0e0e',
-                                  'paper_bgcolor': '#0e0e0e',
-                                  'font': '#ffffff'
-                              }})
+                              figure={'layout': go.Layout(plot_bgcolor='#878787',
+                                                          paper_bgcolor='#878787')
+                                      }),
                 ]),
             ], label='Text Analysis', id='text_analysis_tab'),
             dbc.Tab([
@@ -117,12 +122,9 @@ Layout = html.Div([
                 dcc.Loading([
                     dcc.Graph(id='user_analysis_chart',
                               config={'displayModeBar': False},
-                              figure={'layout': {
-                                  'plot_bgcolor': '#0e0e0e',
-                                  'paper_bgcolor': '#0e0e0e',
-                                  'font': 'white',
-                                'color':'#ffffff'
-                              }})
+                              figure={'layout': go.Layout(plot_bgcolor='#878787',
+                                                          paper_bgcolor='#878787')
+                                      })
                 ]),
             ], tab_id='user_analysis_tab', label='User Analysis'),
         ], id='tabs'),
@@ -133,7 +135,8 @@ Layout = html.Div([
         dbc.Col(id='container_col_select',
                 children=dcc.Dropdown(id='col_select',
                                       placeholder='Filter by:'),
-                lg=2, xs=11),
+                lg=2, xs=11,
+                        style={'color':'black'}),
         dbc.Col([
             dbc.Col([
                 dbc.Container(children=dcc.RangeSlider(id='num_filter',
@@ -151,11 +154,13 @@ Layout = html.Div([
                                           options=[{'label': 'True',
                                                     'value': 1},
                                                    {'label': 'False',
-                                                    'value': 0}]),
-                    lg=0, xs=0,),
+                                                    'value': 0}],
+                        style={'color':'black'}),
+                    lg=0, xs=0),
             dbc.Col(id='container_cat_filter',
                     style={'display': 'none'},
-                    children=dcc.Dropdown(id='cat_filter', multi=True),
+                    children=dcc.Dropdown(id='cat_filter', multi=True,
+                        style={'color':'black'}),
                     lg=0, xs=0),
             dbc.Col([
                 dcc.DatePickerRange(id='date_filter'),
@@ -175,19 +180,13 @@ Layout = html.Div([
                                 'user_followers_count', 'tweet_full_text',
                                 'tweet_retweet_count']
                          ),
-        ], lg=2, xs=11, style={'margin-left': '1%'}),
+        ], lg=2, xs=11, style={'margin-left': '1%','color':'black'}),
         dbc.Col([
             html.Br(),
             dcc.Loading(
                 DataTable(id='table', sort_action='native',
-                        #   n_fixed_rows=1,
-                        #   filtering=False,
                           virtualization=True,
                           fixed_rows={'headers': True},
-                        #   style_cell_conditional=[{
-                        #       'if': {'row_index': 'odd'},
-                        #       'backgroundColor': '#eeeeee',
-                        #       'alignText':'left'}],
                           style_header={'backgroundColor': 'rgb(30, 30, 30)'},
                           style_cell={'width': '200px',
                                       'font-family': 'Source Sans Pro',
@@ -198,4 +197,6 @@ Layout = html.Div([
         ], lg=9, xs=11, style={'position': 'relative', 'zIndex': 1,
                                'margin-left': '1%'}),
     ] + [html.Br() for x in range(30)]),
-], style={'backgroundColor': '#0f0f0f'})
+], 
+style={'backgroundColor': '#0f0f0f'}
+)

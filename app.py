@@ -14,10 +14,10 @@ from plotly.subplots import make_subplots
 import pandas as pd
 import advertools as adv
 from dash.exceptions import PreventUpdate
-import plotly.graph_objs as go
+import plotly.graph_objects as go
 
 from twitter_stalker.html_components import Layout
-
+from twitter_stalker.utils import *
 from twitter_stalker.constants import (
     auth_params, 
     twitter_lang_metadata_filename,
@@ -31,7 +31,11 @@ logging.basicConfig(level=logging.INFO)
 
 adv.twitter.set_auth_params(**auth_params)
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
+app = dash.Dash(
+    __name__,
+    external_stylesheets=[dbc.themes.CYBORG],
+    # assets_external_path='https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css'
+)
 app.title = "Twitter Stalker"
 
 server = app.server
@@ -107,7 +111,7 @@ def plot_wtd_frequency(df, text_col, num_col, regex, search_type):
                                         )
     
     # fig.for_each_yaxis(lambda axis: axis.title.update(font=dict(color = 'white', size=20)))
-    fig.update_annotations(bgcolor='white')
+    # fig.update_annotations(bgcolor='white')
 
     fig.append_trace(go.Bar(x=wtd_freq_df['wtd_freq'][::-1],
                             y=wtd_freq_df['word'][::-1],
@@ -120,14 +124,15 @@ def plot_wtd_frequency(df, text_col, num_col, regex, search_type):
                             orientation='h'), 1, 2)
 
     fig['layout'].update(height=600,
-                         plot_bgcolor='#0e0e0e',
-                         paper_bgcolor='#0e0e0e',
+                         plot_bgcolor='#878787',
+                         paper_bgcolor='#878787',
                          showlegend=False,
                          yaxis={'title': 'Top Words: ' +
                                 text_col.replace('_', ' ').title(),
-                                'color':'#ffffff',
+                                # 'color':'#ffffff',
                                 },
-                          xaxis={'color':'#ffffff'})
+                        #   xaxis={'color':'#ffffff'}
+                          )
     fig['layout']['annotations'] += ({'x': 0.5, 'y': -0.16,
                                       'xref': 'paper', 'showarrow': False,
                                       'font': {'size': 16,'color':'#ffffff'},
@@ -153,8 +158,8 @@ def plot_user_analysis_chart(df, search_type):
     fig = make_subplots(rows=2, cols=4,
                         subplot_titles=subplot_titles)
                         
-    fig.update_annotations(bgcolor='white')
-    fig.for_each_xaxis(lambda axis: axis.title.update(font=dict(color = 'white', size=20)))
+    # fig.update_annotations(bgcolor='white')
+    # fig.for_each_xaxis(lambda axis: axis.title.update(font=dict(color = 'white', size=20)))
 
     for i, col in enumerate(subplot_titles[:4], start=1):
         col = ('user_' + col).replace(' ', '_').lower()
@@ -174,14 +179,10 @@ def plot_user_analysis_chart(df, search_type):
                                   nbinsx=30, ), 2, 4)
 
     fig['layout'].update(height=600,
-                         plot_bgcolor='#0e0e0e',
-                         paper_bgcolor='#0e0e0e',
-                         showlegend=False,
-                         yaxis={
-                             'title': 'Number of Users' + (' ' * 50) + ' .',
-                             'color':'#ffffff'
-                                },
-                          xaxis={'color':'#ffffff'})
+                         plot_bgcolor='#878787',
+                         paper_bgcolor='#878787',
+                         showlegend=False
+                          )
     return fig
 
 @app.callback(Output('numeric_columns', 'options'),
