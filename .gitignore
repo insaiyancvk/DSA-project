@@ -1,3 +1,4 @@
 myenv/
 twitterStalker/
 __pycache__/
+twitter_stalker/assets/auth.json
