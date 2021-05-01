@@ -41,7 +41,6 @@ Layout = html.Div([
         dbc.Col(lg=2, xs=10),
         dbc.Col([
            dcc.Dropdown(id='search_type',
-                        # placeholder='Search Type',
                         options=[{'label': c, 'value': c}
                                  for c in ['Search Tweets',
                                            'Search Users',
@@ -198,6 +197,4 @@ Layout = html.Div([
         ], lg=9, xs=11, style={'position': 'relative', 'zIndex': 1,
                                'margin-left': '1%'}),
     ] + [html.Br() for x in range(30)]),
-], 
-# style={'backgroundColor': '#0f0f0f'}
-)
+])
