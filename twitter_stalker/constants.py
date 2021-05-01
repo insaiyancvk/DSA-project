@@ -1,13 +1,11 @@
 import advertools as adv
 import base64
+import json
 
-
-auth_params = {
-    'app_key': '',
-    'app_secret': '',
-    'oauth_token': '',
-    'oauth_token_secret': '',
-}
+auth_params={}
+with open("twitter_stalker/assets/auth.json","r") as f:
+    auth_params = json.load(f)
+    f.close()
 
 twitter_lang_metadata_filename = 'twitter_stalker/assets/twitter_lang_df.csv'
 
