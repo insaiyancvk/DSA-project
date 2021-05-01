@@ -50,7 +50,7 @@ app.layout = Layout
 def set_text_columns_dropdown_options(n_clicks, query, search_type):
     search_tweet_cols = ['tweet_created_at', 'user_screen_name',
                          'user_followers_count', 'tweet_full_text',
-                          'tweet_retweet_count']
+                          'user_location']
 
     if search_type == 'Search Users':
         return ([{'label': 'User Description','value': 'user_description'}],
@@ -62,7 +62,7 @@ def set_text_columns_dropdown_options(n_clicks, query, search_type):
             'tweet_full_text',
             search_tweet_cols if search_type == 'Search Tweets' else
             ['tweet_created_at', 'tweet_full_text',
-             'tweet_retweet_count', 'tweet_favourite_count'])
+             'user_location', 'tweet_favourite_count'])
 
 
 @app.callback(Output('wtd_freq_chart_title', 'children'),

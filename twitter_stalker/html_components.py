@@ -179,7 +179,7 @@ Layout = html.Div([
             dcc.Dropdown(id='output_table_col_select', multi=True,
                          value=['tweet_created_at', 'user_screen_name',
                                 'user_followers_count', 'tweet_full_text',
-                                'tweet_retweet_count']
+                                'user_location']
                          ),
         ], lg=2, xs=11, style={'margin-left': '1%','color':'black'}),
         dbc.Col([
