@@ -20,10 +20,10 @@ import plotly.graph_objs as go
 logging.basicConfig(level=logging.INFO)
 
 auth_params = {
-    'app_key': 'pqKGefgHPzHvjQHKKmzg02mga',
-    'app_secret': 'xmxHinJSBO0pdT8khEl2BFDP6T6dBYrqcnfBG894BfFIT8gyR7',
-    'oauth_token': '856759533640622080-Ql59dGnfj0BIZ2KaqgjaJkcwc9OurPf',
-    'oauth_token_secret': 'JPZWtKYuhTJ7ovuEcsimcsj1Fr8dboRFSdijesmxmYy8T',
+    'app_key': '',
+    'app_secret': '',
+    'oauth_token': '',
+    'oauth_token_secret': '',
 }
 
 adv.twitter.set_auth_params(**auth_params)
