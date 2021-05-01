@@ -32,9 +32,8 @@ logging.basicConfig(level=logging.INFO)
 adv.twitter.set_auth_params(**auth_params)
 
 app = dash.Dash(
-    __name__,
-    external_stylesheets=[dbc.themes.CYBORG],
-    # assets_external_path='https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css'
+    "Twitter Stalker",
+    external_stylesheets=[dbc.themes.CYBORG]
 )
 app.title = "Twitter Stalker"
 

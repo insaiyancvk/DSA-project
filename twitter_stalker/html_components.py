@@ -47,7 +47,8 @@ Layout = html.Div([
                                            'Search Users',
                                            'Get User Timeline']],
                         value="Search Tweets",
-                        style={'color':'black'})
+                        style={'color':'black'}
+                        )
         ], lg=2, xs=10),
         dbc.Col([
             dbc.Input(id='twitter_search',
@@ -88,8 +89,8 @@ Layout = html.Div([
                         dbc.Label('Weighted by:',color='primary'),
                         dcc.Dropdown(id='numeric_columns',
                                      placeholder='Numeric Column',
-                        style={'color':'black'}
-                                    #  value='tweet_retweet_count'
+                        style={'color':'black'},
+                                     value='tweet_retweet_count'
                                      ),
                     ], lg=3, xs=9),
                     dbc.Col([
@@ -198,5 +199,5 @@ Layout = html.Div([
                                'margin-left': '1%'}),
     ] + [html.Br() for x in range(30)]),
 ], 
-style={'backgroundColor': '#0f0f0f'}
+# style={'backgroundColor': '#0f0f0f'}
 )
