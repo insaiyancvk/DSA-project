@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.INFO)
 adv.twitter.set_auth_params(**auth_params)
 
 app = dash.Dash(
-    "Twitter Stalker",
+    __name__,
     external_stylesheets=[dbc.themes.CYBORG]
 )
 app.title = "Twitter Stalker"
