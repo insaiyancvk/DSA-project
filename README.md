@@ -1,4 +1,5 @@
 # Twitter Stalker
+[![](https://img.shields.io/badge/heroku-deployed-green)](https://twitterstalker.herokuapp.com/)
 
 Clone the repo:
 ```
