@@ -42,5 +42,3 @@ class TwitterStalker():
 
         sentiments = [TextBlob(tweet).sentiment.polarity  for tweet in tweets]
         return sentiments
-
-    
