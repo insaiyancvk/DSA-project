@@ -1,14 +1,11 @@
-import dash_html_components as html
-
-import dash_core_components as dcc
 import dash_bootstrap_components as dbc
-
-from .constants import img_base64
-from .constants import twitter_lang_metadata_filename
+import dash_core_components as dcc
+import dash_html_components as html
 import pandas as pd
 import plotly.graph_objects as go
 from dash_table import DataTable
 
+from .constants import img_base64, twitter_lang_metadata_filename
 
 twtr_lang_df = pd.read_csv(twitter_lang_metadata_filename)
 twtr_lang_df = twtr_lang_df.sort_values('name')

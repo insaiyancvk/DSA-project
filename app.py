@@ -1,31 +1,25 @@
 import base64
 import logging
 import os
-
 from urllib.parse import quote
 
+import advertools as adv
 import dash
-import dash_core_components as dcc
 import dash_bootstrap_components as dbc
+import dash_core_components as dcc
+import pandas as pd
+import plotly.graph_objects as go
 from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
 from dash_table import DataTable
 from dash_table.FormatTemplate import Format
 from plotly.subplots import make_subplots
-import pandas as pd
-import advertools as adv
-from dash.exceptions import PreventUpdate
-import plotly.graph_objects as go
 
+from twitter_stalker.constants import (auth_params, exclude_columns,
+                                       img_base64, phrase_len_dict, regex_dict,
+                                       twitter_lang_metadata_filename)
 from twitter_stalker.html_components import Layout
 from twitter_stalker.utils import *
-from twitter_stalker.constants import (
-    auth_params, 
-    twitter_lang_metadata_filename,
-    exclude_columns,
-    regex_dict,
-    phrase_len_dict,
-    img_base64
-)
 
 logging.basicConfig(level=logging.INFO)
 
