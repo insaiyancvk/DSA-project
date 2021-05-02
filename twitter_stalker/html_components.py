@@ -20,18 +20,16 @@ Layout = html.Div([
     html.Br(),
     dbc.Row([
         dbc.Col([
+            html.Br(),
+            html.H1('')
+        ], lg=4, xs=15),
+        dbc.Col([
             html.A([
                 html.Img(src='data:image/png;base64,' + img_base64,
-                         width=200, style={'display': 'inline-block'}),
+                         width=400, style={'display': 'inline-block'}),
             ]),
             html.Br(),
-        ], lg=2, xs=11, style={'textAlign': 'center'}),
-        dbc.Col([
-            html.Br(),
-            html.H1('Twitter Stalker: Analyze some twitter data',
-                    style={'textAlign': 'center',
-                            'color': 'white'})
-        ], lg=9, xs=11),
+        ], lg=6, xs=15),
     ], style={'margin-left': '1%'}),
     html.Br(),
     dbc.Row([
