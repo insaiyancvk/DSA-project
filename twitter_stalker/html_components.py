@@ -188,6 +188,10 @@ Layout = html.Div([
                           virtualization=True,
                           fixed_rows={'headers': True},
                           style_header={'backgroundColor': 'rgb(30, 30, 30)'},
+                          style_cell_conditional=[{
+                              'if':{'column_id':'tweet_full_text'},
+                              'textAlign':'left'
+                          }],
                           style_cell={'width': '200px',
                                       'font-family': 'Source Sans Pro',
                                       'textAlign':'center',
