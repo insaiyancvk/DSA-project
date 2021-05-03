@@ -1,6 +1,4 @@
-import base64
 import logging
-import os
 from urllib.parse import quote
 
 import advertools as adv
@@ -11,13 +9,12 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
-from dash_table import DataTable
 from dash_table.FormatTemplate import Format
 from plotly.subplots import make_subplots
 
 from twitter_stalker.constants import (auth_params, exclude_columns,
-                                       img_base64, phrase_len_dict, regex_dict,
-                                       twitter_lang_metadata_filename)
+                                       phrase_len_dict, regex_dict,
+                                       )
 from twitter_stalker.html_components import Layout
 from twitter_stalker.utils import *
 
@@ -225,8 +222,6 @@ def set_columns_to_select(df):
     columns = [{'label': c.replace('_', ' ').title(), 'value': c}
                for c in df[0].keys()]
     return columns, columns
-
-
 containers = ['container_num_filter', 'container_str_filter',
               'container_bool_filter', 'container_cat_filter',
               'container_date_filter']
